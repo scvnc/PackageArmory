@@ -1,0 +1,29 @@
+#
+# NPM Package Cache
+# This should run through a preprocessor
+
+# Define proxy_cache path
+proxy_cache_path CACHE_DIR levels=1:2 keys_zone=npm:20m inactive=1M max_size=1G;
+
+server {
+	listen 80;
+	server_name registry.npmjs.org;
+
+	proxy_cache npm;
+	proxy_http_version 1.1;
+	proxy_pass_request_headers off;
+	proxy_set_header Host registry.npmjs.org;
+        
+    proxy_read_timeout 10;
+    proxy_connect_timeout 10;
+	
+	# Serve stale data under these conditions.
+	proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+
+	location / {
+		 proxy_pass https://registry.npmjs.org/;
+		 proxy_cache npm;
+		 proxy_cache_valid 200 302 3d;
+		 proxy_cache_valid 404 1m;
+	 }
+}
