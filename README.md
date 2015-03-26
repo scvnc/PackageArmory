@@ -16,13 +16,14 @@ Solution: nginx cache/proxy everything, serve stale when down.
     - The provided script installs an nginx site that proxies the registry  
     - Have npm use the proxy: ```npm set proxy http://localhost:80```
 
-Solution: [npm_lazy](http://mixu.net/npm_lazy/)
+Solution: [Sinopia](https://github.com/rlidwka/sinopia)
 	
-  - Creates an HTTP server and acts as an NPM repo.
-  - If the package is not found in the cache, it goes online.
-  - Allegedly can work offline, but seems slow when doing so.
+  - I have been using this as my npm repo with much success
+  - Can register private packages.
+  - Sometimes I have to restart the server after my laptop goes to sleep
 
 Problem: The phantomjs package downloads from http://cdn.bitbucket.org/ariya/phantomjs/downloads/
+
 
 ### Other resources
 [GitHub Gist nginx cache](https://gist.github.com/dctrwatson/5785675)  
@@ -37,7 +38,7 @@ Solution: pip2pi
   - No servers required because pip can point to a local folder to be treated as a package repository.
 
 Solution: nginx cache  
-  - To be researched, but seems very feasible...
+  - To be researched, but seems very feasible since PyPI seems to be all URL based.
 
 ## RubyGems
 To be researched..
@@ -87,6 +88,10 @@ Markdown file in the doc folder-- includes some sort of php script that builds i
 
 ## JavaScript
 Mozilla Developer Network may be a good candidate
+
+## ChaiJS
+[Chai docs repo] (https://github.com/chaijs/chai-docs)
+can build it with gnu make + node
 
 ## Node
 You can download the entire file as one html file from the node site.
